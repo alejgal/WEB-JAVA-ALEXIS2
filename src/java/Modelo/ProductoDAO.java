@@ -26,26 +26,13 @@ public class ProductoDAO {
               p.setId(rs.getInt(1));
               p.setNom(rs.getString(2));
               p.setPre(rs.getDouble(3));
-              p.setStock(rs.getInt(4));
-              p.setEstado(rs.getString(5));
+              p.setDesc(rs.getString(4));
+              p.setTM(rs.getString(5));
           }
       } catch (Exception e) {
       }
      return p;
   }
-  public int actualizarstock(int id, int stock){
-      String sql="update producto set Stock=? where idproducto=?";
-      try {
-          con=cn.Conexion();
-          ps=con.prepareStatement(sql);
-          ps.setInt(1, stock);
-          ps.setInt(2, id);
-          ps.executeUpdate();
-      } catch (Exception e) {
-      }
-      return r;
-  }
-    
   //*******Operaciones CRUD***************//    
     public List listar(){
         String sql="select * from producto";
@@ -59,8 +46,8 @@ public class ProductoDAO {
                 em.setId(rs.getInt(1));
                 em.setNom(rs.getString(2));               
                 em.setPre(rs.getDouble(3));
-                em.setStock(rs.getInt(4));
-                em.setEstado(rs.getString(5));                
+                em.setDesc(rs.getString(4));
+                em.setTM(rs.getString(5));                
                 lista.add(em);
             }
         } catch (Exception e) {
@@ -68,14 +55,14 @@ public class ProductoDAO {
         return lista;
     }
     public int agregar(Producto p){ 
-        String sql="insert into producto(Nombres, Precio,Stock,Estado)values(?,?,?,?)";
+        String sql="insert into producto(Nombres, Precio,Descripcion,Tipo_Menu)values(?,?,?,?)";
         try {
             con=cn.Conexion();
             ps=con.prepareStatement(sql);
             ps.setString(1, p.getNom());
             ps.setDouble(2, p.getPre());
-            ps.setInt(3, p.getStock());
-            ps.setString(4, p.getEstado());        
+            ps.setString(3, p.getDesc());
+            ps.setString(4, p.getTM());        
             ps.executeUpdate();
         } catch (Exception e) {
         }
@@ -93,22 +80,22 @@ public class ProductoDAO {
                 pr.setId(rs.getInt(1));
                 pr.setNom(rs.getString(2));               
                 pr.setPre(rs.getDouble(3));
-                pr.setStock(rs.getInt(4));
-                pr.setEstado(rs.getString(5));  
+                pr.setDesc(rs.getString(4));
+                pr.setTM(rs.getString(5));  
             }
         } catch (Exception e) {
         }
         return pr;
     }
     public int actualizar(Producto em){
-        String sql="update producto set Nombres=?, Precio=?, Stock=?, Estado=? where IdProducto=?";
+        String sql="update producto set Nombres=?, Precio=?, Descripcion=?, Tipo_Menu=? where IdProducto=?";
         try {
             con=cn.Conexion();
             ps=con.prepareStatement(sql);
             ps.setString(1, em.getNom());
             ps.setDouble(2, em.getPre());
-            ps.setInt(3, em.getStock());
-            ps.setString(4, em.getEstado());            
+            ps.setString(3, em.getDesc());
+            ps.setString(4, em.getTM());            
             ps.setInt(5, em.getId());
             ps.executeUpdate();
         } catch (Exception e) {

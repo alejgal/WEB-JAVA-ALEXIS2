@@ -27,7 +27,7 @@ public class ClienteDAO {
                 c.setDni(rs.getString(2));
                 c.setNom(rs.getString(3));
                 c.setDir(rs.getString(4));                
-                c.setEs(rs.getString(5));                
+                c.setTel(rs.getString(5));                
             }
         } catch (Exception e) {
         }
@@ -48,7 +48,7 @@ public class ClienteDAO {
                 cl.setDni(rs.getString(2));
                 cl.setNom(rs.getString(3));
                 cl.setDir(rs.getString(4));
-                cl.setEs(rs.getString(5));               
+                cl.setTel(rs.getString(5));               
                 lista.add(cl);
             }
         } catch (Exception e) {
@@ -56,14 +56,14 @@ public class ClienteDAO {
         return lista;
     }
     public int agregar(Cliente cl){ 
-        String sql="insert into cliente(Dni, Nombres, Direccion,Estado)values(?,?,?,?)";
+        String sql="insert into cliente(Dni, Nombres, Direccion,Telefono)values(?,?,?,?)";
         try {
             con=cn.Conexion();
             ps=con.prepareStatement(sql);
             ps.setString(1, cl.getDni());
             ps.setString(2, cl.getNom());
             ps.setString(3, cl.getDir());
-            ps.setString(4, cl.getEs());           
+            ps.setString(4, cl.getTel());           
             ps.executeUpdate();
         } catch (Exception e) {
         }
@@ -81,21 +81,21 @@ public class ClienteDAO {
                 cli.setDni(rs.getString(2));
                 cli.setNom(rs.getString(3));
                 cli.setDir(rs.getString(4));
-                cli.setEs(rs.getString(5));              
+                cli.setTel(rs.getString(5));              
             }
         } catch (Exception e) {
         }
         return cli;
     }
     public int actualizar(Cliente em){
-        String sql="update cliente set Dni=?, Nombres=?, Direccion=?,Estado=? where IdCliente=?";
+        String sql="update cliente set Dni=?, Nombres=?, Direccion=?,Telefono=? where IdCliente=?";
         try {
             con=cn.Conexion();
             ps=con.prepareStatement(sql);
             ps.setString(1, em.getDni());
             ps.setString(2, em.getNom());
             ps.setString(3, em.getDir());
-            ps.setString(4, em.getEs());           
+            ps.setString(4, em.getTel());           
             ps.setInt(5, em.getId());
             ps.executeUpdate();
         } catch (Exception e) {

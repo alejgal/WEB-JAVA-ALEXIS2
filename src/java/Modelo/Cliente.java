@@ -5,17 +5,17 @@ public class Cliente {
     String dni;
     String nom;
     String dir;
-    String es;
+    String tel;
 
     public Cliente() {
     }
 
-    public Cliente(int id, String dni, String nom, String dir, String es) {
+    public Cliente(int id, String dni, String nom, String dir, String tel) {
         this.id = id;
         this.dni = dni;
         this.nom = nom;
         this.dir = dir;
-        this.es = es;
+        this.tel = tel;
     }
 
     public int getId() {
@@ -50,12 +50,12 @@ public class Cliente {
         this.dir = dir;
     }
 
-    public String getEs() {
-        return es;
+    public String getTel() {
+        return tel;
     }
 
-    public void setEs(String es) {
-        this.es = es;
+    public void setTel(String tel) {
+        this.tel = tel;
     }
     
     

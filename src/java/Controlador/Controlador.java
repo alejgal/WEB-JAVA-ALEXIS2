@@ -110,12 +110,12 @@ public class Controlador extends HttpServlet {
                 case "Agregar":
                     String dni = request.getParameter("txtDni");
                     String nom = request.getParameter("txtNombres");
+                    String dir = request.getParameter("txtDir");
                     String tel = request.getParameter("txtTel");
-                    String est = request.getParameter("txtEstado");
                     c.setDni(dni);
                     c.setNom(nom);
-                    c.setDir(tel);
-                    c.setEs(est);
+                    c.setDir(dir);
+                    c.setTel(tel);
                     cdao.agregar(c);
                     request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
                     break;
@@ -128,12 +128,12 @@ public class Controlador extends HttpServlet {
                 case "Actualizar":
                     String dni1 = request.getParameter("txtDni");
                     String nom1 = request.getParameter("txtNombres");
-                    String tel1 = request.getParameter("txtTel");
-                    String est1 = request.getParameter("txtEstado");
+                    String dirr = request.getParameter("txtDir");
+                    String tell = request.getParameter("txtTel");
                     c.setDni(dni1);
                     c.setNom(nom1);
-                    c.setDir(tel1);
-                    c.setEs(est1);
+                    c.setDir(dirr);
+                    c.setTel(tell);
                     c.setId(idc);
                     cdao.actualizar(c);
                     request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
@@ -155,14 +155,14 @@ public class Controlador extends HttpServlet {
                     request.setAttribute("productos", lista);
                     break;
                 case "Agregar":
-                    String dni = request.getParameter("txtDni");
-                    double pre = Double.parseDouble(request.getParameter("txtNombres"));
-                    int st = Integer.parseInt(request.getParameter("txtTel"));
-                    String est = request.getParameter("txtEstado");
+                    String dni = request.getParameter("txtNom");
+                    double pre = Double.parseDouble(request.getParameter("txtPrecio"));
+                    String de = request.getParameter("txtDesc");
+                    String tm = request.getParameter("txtTM");
                     p.setNom(dni);
                     p.setPre(pre);
-                    p.setStock(st);
-                    p.setEstado(est);
+                    p.setDesc(de);
+                    p.setTM(tm);
                     pdao.agregar(p);
                     request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response);
                     break;
@@ -173,14 +173,14 @@ public class Controlador extends HttpServlet {
                     request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response);
                     break;
                 case "Actualizar":
-                    String dni1 = request.getParameter("txtDni");
-                    double pre1 = Double.parseDouble(request.getParameter("txtNombres"));
-                    int st1 = Integer.parseInt(request.getParameter("txtTel"));
-                    String est1 = request.getParameter("txtEstado");
+                    String dni1 = request.getParameter("txtNom");
+                    double pre1 = Double.parseDouble(request.getParameter("txtPrecio"));
+                    String des = request.getParameter("txtDesc");
+                    String tim = request.getParameter("txtTM");
                     p.setNom(dni1);
                     p.setPre(pre1);
-                    p.setStock(st1);
-                    p.setEstado(est1);
+                    p.setDesc(des);
+                    p.setTM(tim);
                     p.setId(idp);
                     pdao.actualizar(p);
                     request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response);
@@ -196,7 +196,7 @@ public class Controlador extends HttpServlet {
             
             request.getRequestDispatcher("Producto.jsp").forward(request, response);
         }
-        if (menu.equals("NuevaVenta")) {           
+        if (menu.equals("RegistrarReserva")) {           
             switch (accion) {
                 case "BuscarCliente":
                     String dni = request.getParameter("codigocliente");
@@ -239,16 +239,6 @@ public class Controlador extends HttpServlet {
                     request.setAttribute("lista", lista);                    
                     break;
                 case "GenerarVenta":
-                    //Actualizacion del Stock
-                    for (int i = 0; i < lista.size(); i++) {
-                        Producto pr=new Producto();
-                        int cantidad=lista.get(i).getCantidad();
-                        int idproducto=lista.get(i).getIdproducto();
-                        ProductoDAO aO=new ProductoDAO();
-                        pr=aO.buscar(idproducto);
-                        int sac=pr.getStock()-cantidad;
-                        aO.actualizarstock(idproducto, sac);
-                    }
                     //Guardar Venta
                     v.setIdcliente(c.getId());
                     v.setIdempleado(2);
@@ -284,9 +274,9 @@ public class Controlador extends HttpServlet {
                         numeroserie = gs.NumeroSerie(incrementar);
                         request.setAttribute("nserie", numeroserie);
                     }
-                    request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
+                    request.getRequestDispatcher("RegistrarReserva.jsp").forward(request, response);
             }
-            request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
+            request.getRequestDispatcher("RegistrarReserva.jsp").forward(request, response);
         }
         
     }

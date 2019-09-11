@@ -5,18 +5,18 @@ public class Producto {
     int id;
     String nom;
     double pre;
-    int stock;
-    String estado;
+    String desc;
+    String tm;
 
     public Producto() {
     }
 
-    public Producto(int id, String nom, double pre, int stock, String estado) {
+    public Producto(int id, String nom, double pre, String desc, String tm) {
         this.id = id;
         this.nom = nom;
         this.pre = pre;
-        this.stock = stock;
-        this.estado = estado;
+        this.desc = desc;
+        this.tm = tm;
     }
 
     public int getId() {
@@ -43,20 +43,20 @@ public class Producto {
         this.pre = pre;
     }
 
-    public int getStock() {
-        return stock;
+    public String getDesc() {
+        return desc;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getTM() {
+        return tm;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setTM(String tm) {
+        this.tm = tm;
     }
     
     
