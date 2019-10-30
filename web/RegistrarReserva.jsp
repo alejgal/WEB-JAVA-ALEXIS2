@@ -68,10 +68,10 @@
             <div class="col-sm-7">
                 <div class="card parte02">                    
                     <div class="card-body">
-                        <div class="d-flex ml-auto col-sm-6">
+                        <%--<div class="d-flex ml-auto col-sm-6">
                             <label class="text-right mt-2 col-sm-6">NRO. SERIE</label>
                             <input readonly="" type="text" name="numeroserie" class="form-control text-center" value="${nserie}" style="font-weight: bold;font-size: 18px">
-                        </div>                      
+                        </div>--%>                
                         <br>
                         <table class="table table-hover">
                             <thead>
